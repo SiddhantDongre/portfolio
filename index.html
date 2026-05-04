@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siddhant Dongre | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d1117;
+  --surface: #161b27;
+  --border: #1e2a3a;
+  --primary: #38bdf8;
+  --accent: #0ea5e9;
+  --green: #34d399;
+  --text: #e2e8f0;
+  --muted: #64748b;
+  --subtle: #1e293b;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Sora',sans-serif;
+  font-size:15px;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+
+/* BG texture */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(56,189,248,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 10% 80%, rgba(52,211,153,0.05) 0%, transparent 60%);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* NAVBAR */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 60px;
+  position:sticky;
+  top:0;
+  z-index:999;
+  background:rgba(13,17,23,0.85);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.logo{
+  font-family:'JetBrains Mono',monospace;
+  font-size:1rem;
+  color:var(--primary);
+  letter-spacing:0.02em;
+}
+.logo span{color:var(--green)}
+.nav-links{list-style:none;display:flex;gap:32px}
+.nav-links a{
+  text-decoration:none;
+  color:var(--muted);
+  font-size:0.85rem;
+  font-weight:600;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  transition:.2s;
+}
+.nav-links a:hover{color:var(--primary)}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 80px;
+  position:relative;
+  z-index:1;
+  gap:40px;
+  max-width:1200px;
+  margin:0 auto;
+}
+.hero-inner{flex:1;min-width:0}
+.hero-img-wrap{
+  flex-shrink:0;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:6px;
+}
+.hero-img-wrap::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--primary),var(--green));
+  z-index:0;
+}
+.hero-img-wrap::after{
+  content:'';
+  position:absolute;
+  inset:-18px;
+  border-radius:50%;
+  border:1px solid rgba(56,189,248,0.18);
+  z-index:0;
+}
+.profile-img{
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  object-fit:cover;
+  object-position:center top;
+  position:relative;
+  z-index:1;
+  display:block;
+  border:4px solid var(--bg);
+  box-shadow:0 0 40px rgba(56,189,248,0.12);
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 14px;
+  border:1px solid rgba(56,189,248,0.3);
+  border-radius:100px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.75rem;
+  color:var(--primary);
+  margin-bottom:28px;
+  background:rgba(56,189,248,0.05);
+}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero h1{
+  font-size:clamp(2.2rem,5vw,3.8rem);
+  font-weight:700;
+  line-height:1.15;
+  margin-bottom:16px;
+  letter-spacing:-0.02em;
+}
+.hero h1 em{
+  font-style:normal;
+  color:transparent;
+  background:linear-gradient(135deg,var(--primary),var(--green));
+  -webkit-background-clip:text;
+  background-clip:text;
+}
+.hero-sub{
+  font-size:1rem;
+  color:var(--muted);
+  margin-bottom:36px;
+  max-width:560px;
+}
+.btn-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  padding:12px 26px;
+  border-radius:8px;
+  font-size:0.88rem;
+  font-weight:600;
+  cursor:pointer;
+  text-decoration:none;
+  transition:.25s;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:none;
+}
+.btn-primary{
+  background:var(--primary);
+  color:#0d1117;
+}
+.btn-primary:hover{background:#7dd3fc;transform:translateY(-2px)}
+.btn-outline{
+  background:transparent;
+  color:var(--text);
+  border:1px solid var(--border);
+}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-2px)}
+
+/* SECTIONS */
+.section{
+  padding:90px 60px;
+  position:relative;
+  z-index:1;
+  max-width:1100px;
+  margin:0 auto;
+}
+.section-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;
+  color:var(--primary);
+  text-transform:uppercase;
+  letter-spacing:0.12em;
+  margin-bottom:10px;
+  text-align:center;
+}
+.section-title{
+  font-size:clamp(1.6rem,3vw,2.2rem);
+  font-weight:700;
+  letter-spacing:-0.02em;
+  margin-bottom:48px;
+  color:var(--text);
+  text-align:center;
+}
+.divider{
+  width:40px;height:3px;
+  background:linear-gradient(90deg,var(--primary),var(--green));
+  border-radius:2px;
+  margin-bottom:48px;
+  margin-top:-36px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* ABOUT */
+.about-text{
+  max-width:720px;
+  margin:0 auto;
+  color:var(--muted);
+  font-size:1rem;
+  line-height:1.85;
+  border-left:2px solid var(--border);
+  padding-left:24px;
+}
+
+/* EDUCATION */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.edu-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:24px;
+  transition:.3s;
+}
+.edu-card:hover{border-color:rgba(56,189,248,0.4);transform:translateY(-4px)}
+.edu-year{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;
+  color:var(--green);
+  margin-bottom:10px;
+  letter-spacing:0.08em;
+}
+.edu-card h3{font-size:0.95rem;font-weight:600;margin-bottom:8px;color:var(--text)}
+.edu-card p{font-size:0.83rem;color:var(--muted)}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.skill-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:22px 24px;
+  transition:.3s;
+}
+.skill-card:hover{border-color:rgba(56,189,248,0.35);transform:translateY(-4px)}
+.skill-cat{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.7rem;
+  color:var(--primary);
+  text-transform:uppercase;
+  letter-spacing:0.1em;
+  margin-bottom:12px;
+}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{
+  padding:4px 10px;
+  border-radius:5px;
+  font-size:0.78rem;
+  background:rgba(56,189,248,0.08);
+  color:var(--text);
+  border:1px solid rgba(56,189,248,0.15);
+}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.project-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:28px;
+  transition:.3s;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.project-card:hover{border-color:rgba(56,189,248,0.4);transform:translateY(-6px)}
+.project-top{display:flex;justify-content:space-between;align-items:flex-start}
+.project-icon{font-size:1.6rem}
+.github-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 12px;
+  border-radius:6px;
+  border:1px solid var(--border);
+  color:var(--muted);
+  font-size:0.78rem;
+  text-decoration:none;
+  font-family:'JetBrains Mono',monospace;
+  transition:.2s;
+}
+.github-link:hover{border-color:var(--primary);color:var(--primary)}
+.project-card h3{font-size:1rem;font-weight:600;color:var(--text)}
+.project-card p{font-size:0.85rem;color:var(--muted);line-height:1.7;flex:1}
+.project-tech{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tech-tag{
+  padding:3px 9px;
+  border-radius:4px;
+  font-size:0.72rem;
+  background:rgba(52,211,153,0.08);
+  color:var(--green);
+  border:1px solid rgba(52,211,153,0.2);
+  font-family:'JetBrains Mono',monospace;
+}
+
+/* CONTACT */
+.contact-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:36px;
+  max-width:480px;
+  width:100%;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+.contact-row{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  color:var(--muted);
+  font-size:0.9rem;
+}
+.contact-icon{
+  width:38px;height:38px;
+  background:rgba(56,189,248,0.08);
+  border:1px solid rgba(56,189,248,0.2);
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;
+  flex-shrink:0;
+}
+.contact-row a{color:var(--text);text-decoration:none}
+.contact-row a:hover{color:var(--primary)}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px 60px;
+  border-top:1px solid var(--border);
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.75rem;
+  color:var(--muted);
+  position:relative;z-index:1;
+}
+
+/* FADE IN */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.show{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  nav{padding:16px 24px}
+  .nav-links{gap:16px}
+  .hero{flex-direction:column-reverse;padding:100px 24px 60px;gap:32px;text-align:center}
+  .hero-inner{max-width:100%}
+  .btn-row{justify-content:center}
+  .section{padding-left:24px;padding-right:24px}
+  .profile-img{width:200px;height:200px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">sd<span>.</span>dev</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="home" class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span> Open to Internship Opportunities</div>
+    <h1>Hi, I'm <em>Siddhant Dongre</em></h1>
+    <p class="hero-sub">Aspiring Software Developer & IT student passionate about building real-world solutions with Java, Web Technologies, and Machine Learning.</p>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="downloadResume()">&#11015; Download Resume</button>
+      <a class="btn btn-outline" href="#projects">View Projects &rarr;</a>
+    </div>
+  </div>
+  <div class="hero-img-wrap">
+    <img src="photo.png" alt="" class="profile-img" onerror="this.style.display='none';document.getElementById('img-fallback').style.display='flex'">
+    <div id="img-fallback" style="display:none;width:300px;height:300px;border-radius:50%;background:var(--surface);border:4px solid var(--bg);box-shadow:0 0 40px rgba(56,189,248,0.12);position:relative;z-index:1;align-items:center;justify-content:center;flex-direction:column;gap:6px;">
+      <span style="font-size:2.5rem;font-weight:700;color:var(--primary);font-family:'Sora',sans-serif;line-height:1;">SD</span>
+      <span style="font-size:0.72rem;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:0.08em;">Siddhant Dongre</span>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section fade-in">
+  <div class="section-label">// about me</div>
+  <div class="section-title">Who I Am</div>
+  <div class="divider"></div>
+  <p class="about-text">
+    I am a third-year Information Technology student with a strong interest in software development and problem-solving. I am currently focused on building a solid foundation in Data Structures and Algorithms while developing practical projects using Java, web technologies, and Python. I enjoy learning new technologies and applying them to real-world problems, and I am seeking an opportunity where I can contribute to meaningful projects and grow as a developer in a fast-paced and collaborative environment.
+  </p>
+</section>
+
+<section id="education" class="section fade-in">
+  <div class="section-label">// education</div>
+  <div class="section-title">Academic Background</div>
+  <div class="divider"></div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-year">2021</div>
+      <h3>Secondary (10th)</h3>
+      <p>Yashwantrao Chavhan Vidyalaya, Majlapur (Dapura)</p>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2023</div>
+      <h3>Higher Secondary (12th)</h3>
+      <p>Shri Shivaji College of Science, Akola</p>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">Expected 2027</div>
+      <h3>B.E. &mdash; Information Technology</h3>
+      <p>Mauli College of Engineering and Technology, Shegaon</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="section fade-in">
+  <div class="section-label">// skills</div>
+  <div class="section-title">Technical Skills</div>
+  <div class="divider"></div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-cat">Languages</div>
+      <div class="skill-tags">
+        <span class="tag">Java</span>
+        <span class="tag">C</span>
+        <span class="tag">SQL</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Python</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">Web Technologies</div>
+      <div class="skill-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">JSP</span>
+        <span class="tag">Servlets</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">Frameworks &amp; Tools</div>
+      <div class="skill-tags">
+        <span class="tag">JDBC</span>
+        <span class="tag">Git</span>
+        <span class="tag">GitHub</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">Databases</div>
+      <div class="skill-tags">
+        <span class="tag">MySQL</span>
+        <span class="tag">Oracle 10g</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="section fade-in">
+  <div class="section-label">// projects</div>
+  <div class="section-title">What I've Built</div>
+  <div class="divider"></div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-icon">&#128193;</div>
+        <!-- Replace 'yourusername' and repo name with your actual GitHub details -->
+        <a class="github-link" href="https://github.com/SiddhantDongre/Student-Management-System-Java.git" target="_blank">
+          &#11088; GitHub
+        </a>
+      </div>
+      <h3>Student Management System</h3>
+      <p>Console-based application to manage student records with full CRUD operations &mdash; add, update, delete, and view &mdash; built using core Java concepts and JDBC.</p>
+      <div class="project-tech">
+        <span class="tech-tag">Java</span>
+        <span class="tech-tag">JDBC</span>
+        <span class="tech-tag">MySQL</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-icon">&#128202;</div>
+        <!-- Replace 'yourusername' and repo name with your actual GitHub details -->
+        <a class="github-link" href="https://github.com/SiddhantDongre/student-performance-prediction.git" target="_blank">
+          &#11088; GitHub
+        </a>
+      </div>
+      <h3>Student Performance Predictor</h3>
+      <p>Full-stack project using Python and Machine Learning to analyze student data and predict academic performance outcomes with a web-based interface.</p>
+      <div class="project-tech">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">ML</span>
+        <span class="tech-tag">HTML/CSS</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact" class="section fade-in">
+  <div class="section-label">// contact</div>
+  <div class="section-title">Get In Touch</div>
+  <div class="divider"></div>
+  <div class="contact-card">
+    <div class="contact-row">
+      <div class="contact-icon">&#9993;</div>
+      <a href="mailto:dongresiddhant45@email.com">dongresiddhant45@email.com</a>
+    </div>
+    <div class="contact-row">
+      <div class="contact-icon">&#128222;</div>
+      <span>+91 9881607678</span>
+    </div>
+    <div class="contact-row">
+      <div class="contact-icon">&#128025;</div>
+      <!-- Replace 'yourusername' with your actual GitHub username -->
+      <a href="https://github.com/SiddhantDongre" target="_blank">github.com/SiddhantDongre</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Siddhant Dongre &nbsp;&middot;&nbsp; Built with passion, not a template.
+</footer>
+
+<script>
+function downloadResume() {
+  window.open("resume.pdf");
+}
+
+const faders = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('show');
+  });
+}, { threshold: 0.1 });
+faders.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
